@@ -54,7 +54,7 @@ export class AutoGenerator {
       header += "import { DataTypes, Model, Optional } from 'sequelize';\n";
     } else if (this.options.lang === 'es6') {
       header += "const Sequelize = require('sequelize');\n";
-      header += "module.exports = #TABLE#;\n";
+      //header += "module.exports = #TABLE#;\n";
       header += "class #TABLE# extends Sequelize.Model {\n";
       header += sp + "static init(sequelize, DataTypes) {\n";
       header += sp + "super.init({\n";
@@ -117,12 +117,16 @@ export class AutoGenerator {
 
       str += this.addTable(table);
 
+     
+      if (this.options.lang === 'es6') {
+        str += "module.exports = #TABLE#;\n";
+      }
       const re = new RegExp('#TABLE#', 'g');
       str = str.replace(re, tableName);
-
       text[table] = str;
     });
 
+     
     return text;
   }
 
