@@ -54,9 +54,7 @@ export class AutoGenerator {
       header += "import { DataTypes, Model, Optional } from 'sequelize';\n";
     } else if (this.options.lang === 'es6') {
       header += "const Sequelize = require('sequelize');\n";
-      header += "module.exports = (sequelize, DataTypes) => {\n";
-      header += sp + "return #TABLE#.init(sequelize, DataTypes);\n";
-      header += "}\n\n";
+      header += "module.exports = #TABLE#;\n";
       header += "class #TABLE# extends Sequelize.Model {\n";
       header += sp + "static init(sequelize, DataTypes) {\n";
       header += sp + "super.init({\n";
